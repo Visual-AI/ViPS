@@ -1,0 +1,50 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.work/
+# Local credentials and private keys. Only sanitized environment examples belong in Git.
+.env
+.env.*
+!.env.example
+.netrc
+.git-credentials
+id_rsa
+id_dsa
+id_ecdsa
+id_ecdsa_sk
+id_ed25519
+id_ed25519_sk
+*.pem
+*.key
+*.p12
+*.pfx
+# Logs may contain local paths or third-party authentication diagnostics.
+*.log
+*.log.*
+/third_party/*
+!/third_party/transformers/
+!/third_party/lmms-eval/
+/local/
+# Cluster job files are local validation utilities, not release entry points.
+*.slurm
+*.sbatch
+slurm-*.out
+# Local research notes and release bookkeeping.
+/CODEX_DEV_LOG.md
+/RESULT_TABLE.md
+/TODO.md
+# Keep local validation tests out of the release.
+/tests/
+
+/data/
+/features/
+/checkpoints
+/models
+/outputs/
+/logs/
+*.pt
+*.pth
+*.ckpt
+*.safetensors

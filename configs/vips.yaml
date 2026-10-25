@@ -1,0 +1,50 @@
+name: vips
+
+model:
+  name_or_path: models/Qwen3-VL-8B-Instruct
+  attention: flash_attention_2
+  max_frames: 32
+
+vips:
+  enabled: true
+  prior_models: [vggt, da3, ta, radio, wan]
+  target_layers: [3, 10, 17, 24, 31]
+
+data:
+  annotations: data/train/annotations
+  videos: data/train/videos
+  features: data/train/features
+
+training:
+  output_dir: checkpoints/vips
+  seed: 42
+  report_to: none
+  num_epochs: 4
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-5
+  optimizer: adamw_torch
+  weight_decay: 0.0
+  warmup_ratio: 0.03
+  scheduler: cosine
+  max_grad_norm: 1.0
+  max_length: 16384
+  bf16: true
+  gradient_checkpointing: true
+  dataloader_workers: 8
+  dataloader_prefetch_factor: 2
+  save_steps: 4000
+  save_total_limit: 1
+  lora_rank: 128
+  lora_alpha: 256
+  lora_dropout: 0.05
+  tune_vision: false
+  tune_merger: true
+  tune_language_model: true
+
+evaluation:
+  task: vips_vsibench
+  videos: data/vsibench/videos
+  features: data/vsibench/features
+  output_dir: outputs/eval/vips
+  batch_size: 1

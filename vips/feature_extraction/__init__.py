@@ -1,0 +1,1 @@
+"""VIPS feature extraction."""

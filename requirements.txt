@@ -1,0 +1,42 @@
+# Curated from the qwen3vl environment used for ViPS.
+# Run from the repository root, following the installation order in README.md.
+# Install the CUDA 12.8 PyTorch wheels first; these pins keep that version fixed.
+torch==2.8.0
+torchvision==0.23.0
+
+# Use the bundled Transformers 4.57.0 fork with ViPS feature injection.
+-e ./third_party/transformers
+
+# Training and model loading.
+accelerate==1.13.0
+deepspeed==0.19.0
+peft==0.19.1
+huggingface-hub==0.36.2
+tokenizers==0.22.2
+safetensors==0.7.0
+
+# Video / image processing and proxy features.
+# Raw-video preprocessing also needs FFmpeg/FFprobe executables (see README).
+decord==0.6.0
+pillow==12.2.0
+numpy==2.2.6
+einops==0.8.2
+
+# VSI-Bench evaluation through the bundled LMMS-Eval source.
+datasets==4.8.5
+evaluate==0.4.6
+pandas==2.3.3
+sacrebleu==2.6.0
+pytablewriter==1.2.1
+sqlitedict==2.1.0
+hf-transfer==0.1.9
+tenacity==9.1.4
+
+# Configuration, chat templates, and logging.
+PyYAML==6.0.3
+Jinja2==3.1.6
+loguru==0.7.3
+tqdm==4.67.3
+
+# Install FlashAttention separately after PyTorch and the build tools:
+# python -m pip install flash-attn==2.8.3 --no-build-isolation

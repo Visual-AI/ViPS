@@ -1,0 +1,29 @@
+dataset_path: json
+dataset_kwargs:
+  data_files:
+    test: data/vsibench/test.jsonl
+  cache_dir: data/vsibench/cache
+  video: true
+task: vips_vsibench
+test_split: test
+output_type: generate_until
+process_docs: !function vsibench_utils.process_docs
+doc_to_visual: !function vsibench_utils.doc_to_visual
+doc_to_text: !function vsibench_utils.doc_to_text
+doc_to_target: ground_truth
+generation_kwargs:
+  max_new_tokens: 128
+  num_beams: 1
+  do_sample: false
+process_results: !function vsibench_utils.process_results
+metric_list:
+  - metric: vsibench_score
+    aggregation: !function vsibench_utils.aggregate_results
+    higher_is_better: true
+lmms_eval_specific_kwargs:
+  default:
+    pre_prompt: ""
+    mca_post_prompt: "Answer with the option's letter from the given choices directly."
+    na_post_prompt: "Please answer the question using a single word or phrase."
+metadata:
+  - version: 0.0

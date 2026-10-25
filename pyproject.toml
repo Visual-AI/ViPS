@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vips"
+version = "0.1.0"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+
+[project.scripts]
+vips-train = "vips.train.__main__:main"
+vips-eval = "vips.eval.__main__:main"
+vips-extract-features = "vips.feature_extraction.__main__:main"
+
+[tool.setuptools]
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "vips/feature_extraction/vggt_multihead/LICENSE*"]
+
+[tool.setuptools.packages.find]
+include = ["vips*"]

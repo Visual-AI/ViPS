@@ -1,0 +1,1 @@
+"""VIPS training entry point."""
